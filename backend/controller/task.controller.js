@@ -47,4 +47,54 @@ const getMyTasks = asyncHandler(async(req, res) => {
     )
 })
 
-export {addTasks, getMyTasks}
+
+const editTask = asyncHandler(async(req, res) => {
+    const {taskId, task} = req.body;
+    if(!task || !taskId){
+        throw new ApiError(400, "All fields are mandatory")
+    }
+
+    const updatedTask = await Task.findByIdAndUpdate(taskId, {
+        $set: {
+                task
+            }
+        },
+        {new: true}
+    )
+
+    return res
+    .status(200)
+    .json(new ApiResponse(200, updatedTask, "Task updated"))
+})
+
+
+const getTask = asyncHandler(async(req, res) => {
+    const { taskId } = req.params;
+    if(!taskId?.trim()){
+        throw new ApiError(400, "Task id is missing")
+    }
+
+    const taskDetails = await Task.findById(taskId)
+    if(!taskDetails){
+        throw new ApiError(400, "Coudnt fetch task details")
+    }
+
+    //return response
+    return res.status(201).json(
+        new ApiResponse(200, taskDetails, "Task fetched successfully")
+    )
+})
+
+
+const deleteTask = asyncHandler(async(req, res) => {
+    const {taskId} = req.body
+
+    const deletedTask = await Task.findByIdAndDelete(taskId)
+
+     //return response
+    return res.status(201).json(
+        new ApiResponse(200, "", "Task deleted successfully")
+    )
+})
+
+export {addTasks, getMyTasks, editTask, getTask, deleteTask}
