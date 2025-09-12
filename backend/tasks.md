@@ -1,3 +1,3 @@
 - [x] edit task
 - [x] delete task
-- [ ] update task status & completedAt
+- [x] update task status & completedAt

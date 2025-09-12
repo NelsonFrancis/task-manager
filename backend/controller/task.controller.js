@@ -5,6 +5,10 @@ import {Task} from '../model/task.model.js';
 
 const addTasks = asyncHandler(async(req, res) => {
     const userId = req.user._id;
+    if(!userId){
+        throw new ApiError(400, "User id is missing")
+    }
+
     const {task, createdBy, status, completedAt} = req.body
 
      //checking for empty fileds
@@ -34,6 +38,9 @@ const addTasks = asyncHandler(async(req, res) => {
 
 const getMyTasks = asyncHandler(async(req, res) => {
     const userId = req.user._id;
+    if(!userId){
+        throw new ApiError(400, "User id is missing")
+    }
 
     // Find all tasks belonging to that user
     const tasks = await Task.find({ createdBy: userId }).sort({ createdAt: -1 });
@@ -88,8 +95,11 @@ const getTask = asyncHandler(async(req, res) => {
 
 const deleteTask = asyncHandler(async(req, res) => {
     const {taskId} = req.body
+    if(!taskId?.trim()){
+        throw new ApiError(400, "Task id is missing")
+    }
 
-    const deletedTask = await Task.findByIdAndDelete(taskId)
+    await Task.findByIdAndDelete(taskId)
 
      //return response
     return res.status(201).json(
@@ -97,4 +107,23 @@ const deleteTask = asyncHandler(async(req, res) => {
     )
 })
 
-export {addTasks, getMyTasks, editTask, getTask, deleteTask}
+
+const updateStatus = asyncHandler(async(req, res) => {
+    const {taskId} = req.body
+    if(!taskId?.trim()){
+        throw new ApiError(400, "Task id is missing")
+    }
+
+    const task = await Task.findById(taskId)
+    if(!task){
+        throw new ApiError(400, "Coudnt fetch task details")
+    }
+
+    task.status = "Completed"
+    await task.save({validateBeforeSave: false})
+
+    return res.status(200)
+    .json(new ApiResponse(200, {}, "Task status changed successfully"))
+})
+
+export {addTasks, getMyTasks, editTask, getTask, deleteTask, updateStatus}
