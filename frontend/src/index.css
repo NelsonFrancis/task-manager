@@ -21,6 +21,7 @@ nav{
 .reg_btn{
   background-color: #00c9c9 !important;
   color: #fff !important;
+  width: 140px;
 }
 h1{
   color: #00c9c9;
@@ -31,4 +32,11 @@ h1{
 .navbar-nav li a{
   text-decoration: none;
   color: #5e7171 !important;
+}
+.navbar-nav li .active-link{
+  color: #00c9c9 !important;
+}
+.table thead th {
+    background: #00c9c9;
+    color: #fff;
 }

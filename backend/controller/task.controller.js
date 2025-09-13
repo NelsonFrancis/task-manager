@@ -120,6 +120,7 @@ const updateStatus = asyncHandler(async(req, res) => {
     }
 
     task.status = "Completed"
+    task.completedAt = Date.now();
     await task.save({validateBeforeSave: false})
 
     return res.status(200)
