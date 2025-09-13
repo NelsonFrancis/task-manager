@@ -1,3 +1,4 @@
 - [x] edit task
 - [x] delete task
 - [x] update task status & completedAt
+- [ ] check for unique user
