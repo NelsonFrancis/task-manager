@@ -21,7 +21,27 @@ nav{
 .reg_btn{
   background-color: #00c9c9 !important;
   color: #fff !important;
+  min-width: 140px;
+}
+.theme_btn{
+  background-color: #00c9c9 !important;
+  color: #fff !important;
+}
+.complete_btn{
+  background-color: #083fcc !important;
+  color: #fff !important;
   width: 140px;
+  margin: 5px;
+}
+.edit_btn{
+  background-color: #a6990b !important;
+  color: #fff !important;
+  margin: 5px;
+}
+.delete_btn{
+  background-color: #d30606 !important;
+  color: #fff !important;
+  margin: 5px;
 }
 h1{
   color: #00c9c9;
@@ -39,4 +59,29 @@ h1{
 .table thead th {
     background: #00c9c9;
     color: #fff;
+}
+.modal-header{
+  background-color: #00c9c9;
+}
+.modal-header h5{
+  color: #fff;
+}
+.modal-header .close{
+  color: #fff;
+  opacity: 1;
+}
+.modal-header .close:hover{
+  color: #dfdfdf;
+}
+.modal_hd{
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px !important;
+}
+.modal_label{
+  font-weight: 600;
+  color: #00c9c9;
+}
+.modal-body p{
+  margin-bottom: 5px;
 }
