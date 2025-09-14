@@ -5,8 +5,12 @@ import Login from './pages/Login';
 import TaskList from './pages/TaskList';
 import AddTask from './pages/AddTask';
 import Navbar from './components/Navbar';
+import EditTask from './pages/EditTask';
+import { useState } from 'react';
 
 function App() {
+  const [user, setUser] = useState("");
+
   return (
     <>
       <Navbar />
@@ -15,8 +19,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/task-list" element={<TaskList />} />
         <Route path="/add-task" element={<AddTask />} />
-        {/* Example of a route with a parameter */}
-        {/* <Route path="/users/:id" element={<UserProfile />} />  */}
+        <Route path="/edit-task/:id" element={<EditTask />} /> 
       </Routes>
     </>
   )

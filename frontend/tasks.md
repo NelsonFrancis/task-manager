@@ -1,5 +1,5 @@
 - [ ] protect frontend routes
-- [ ] conditionally show nav links
-- [ ] logged in username on navbar
-- [ ] task list delete func
-- [ ] task list edit func
+- [x] conditionally show nav links
+- [x] logged in username on navbar
+- [x] task list delete func
+- [x] task list edit func

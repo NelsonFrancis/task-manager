@@ -34,7 +34,7 @@ nav{
   margin: 5px;
 }
 .edit_btn{
-  background-color: #a6990b !important;
+  background-color: #f09c0c !important;
   color: #fff !important;
   margin: 5px;
 }
@@ -84,4 +84,10 @@ h1{
 }
 .modal-body p{
   margin-bottom: 5px;
+}
+.no_task{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: 100;
 }

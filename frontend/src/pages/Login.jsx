@@ -32,6 +32,7 @@ const Login = () => {
     }, {withCredentials: true,})
     .then(res => {
       setLoading(false);
+      localStorage.setItem("fullName", res.data.data.user.fullName);
       console.log("response = ", res);
       navigate("/task-list");
     })
