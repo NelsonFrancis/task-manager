@@ -1,5 +1,3 @@
-import mongoose from "mongoose";
-import jwt from 'jsonwebtoken';
 import asyncHandler from "../utils/asyncHandler.js";
 import {ApiError} from '../utils/ApiError.js';
 import {ApiResponse} from '../utils/ApiResponse.js';
@@ -24,10 +22,8 @@ const generateAccessAndRefreshTokens = async (userId) => {
 
 
 const registerUser = asyncHandler(async (req, res) => {
-    //extract variables from request body
     const {email, fullName, password} = req.body
 
-    //checking for empty fileds
     if(
         [email, fullName, password].some(field => field?.trim === "")
     ){
@@ -62,7 +58,6 @@ const registerUser = asyncHandler(async (req, res) => {
 
 
 const loginUser = asyncHandler(async (req, res) => {
-    //extract values from req body
     const {email, password} = req.body;
     if(!email){
         throw new ApiError(400, "Email id is required")
@@ -86,7 +81,7 @@ const loginUser = asyncHandler(async (req, res) => {
     const options = {
         httpOnly: true,
         secure: true,
-         sameSite: "strict",
+        sameSite: "strict",
     }
     
     return res.status(200)

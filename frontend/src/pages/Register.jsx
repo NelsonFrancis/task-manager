@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import { ToastContainer, toast, Zoom } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
@@ -34,7 +34,6 @@ const Register = () => {
     })
     .then(res => {
       setLoading(false);
-      console.log("response = ", res);
       toast.success('User Registered !!!', {
         position: "top-right",
         autoClose: 5000,
@@ -50,7 +49,6 @@ const Register = () => {
     })
     .catch(err => {
       setLoading(false);
-      console.log("error = ",err);
       toast.error('Something went wrong !!!', {
         position: "top-right",
         autoClose: 5000,
@@ -68,7 +66,7 @@ const Register = () => {
   return (
     <div className="container">
       <div className="white_bg">
-        <h1>Register User</h1>
+        <h1>Register</h1>
         { loading ? 
           <p>Loading...</p> : 
           <form onSubmit={registerUser}>

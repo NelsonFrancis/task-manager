@@ -11,7 +11,6 @@ const addTasks = asyncHandler(async(req, res) => {
 
     const {task, createdBy, status, completedAt} = req.body
 
-     //checking for empty fileds
     if(
         [task, createdBy, status, completedAt].some(field => field?.trim === "")
     ){

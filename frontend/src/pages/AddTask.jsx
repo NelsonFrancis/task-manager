@@ -43,12 +43,10 @@ const AddTask = () => {
         theme: "colored",
         transition: Zoom,
       });
-      console.log("response = ", res);
       navigate("/task-list");
     })
     .catch(err => {
       setLoading(false);
-      console.log("error = ",err);
       toast.error('Something went wrong !!!', {
         position: "top-right",
         autoClose: 5000,

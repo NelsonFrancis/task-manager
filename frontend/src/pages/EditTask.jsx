@@ -5,72 +5,82 @@ import { useNavigate, useParams } from "react-router-dom";
 
 const EditTask = () => {
     const [task, setTask] = useState("");
-    // const [taskData, setTaskData] = useState({});
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const { id } = useParams();
 
-    const editMyTask = async() => {
-        setLoading(true);
-        await axios.patch(`${import.meta.env.VITE_BASE_URL}/tasks/editTask`,
-            { taskId: id, task },  
-            { withCredentials: true } 
-        )
-        .then(res => {
-            setLoading(false);
-            console.log("response = ", res.data);
-            toast.success('Task edited successfully !!!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Zoom,
-            });
-            setTimeout(function(){navigate("/task-list")}, 2000)
-        })  
-        .catch(err => {
-            setLoading(false);
-            console.log("error = ",err);
-            toast.error('Something went wrong while editing this task !!!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Zoom,
-            });
-        })
+    const editMyTask = async(e) => {
+      e.preventDefault();
+      if(task == ""){
+        toast.warn('All fields are mandatory!!!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Zoom,
+        });
+        return
+      }
+      setLoading(true);
+      await axios.patch(`${import.meta.env.VITE_BASE_URL}/tasks/editTask`,
+        { taskId: id, task },  
+        { withCredentials: true } 
+      )
+      .then(res => {
+        setLoading(false);
+        toast.success('Task edited successfully !!!', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          transition: Zoom,
+        });
+        setTimeout(function(){navigate("/task-list")}, 2000)
+      })  
+      .catch(err => {
+        setLoading(false);
+        toast.error('Something went wrong while editing this task !!!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Zoom,
+        });
+      })
     }
 
     const getTaskDetails = async() => {
-        await axios.get(`${import.meta.env.VITE_BASE_URL}/tasks/getMyTasks/${id}`, {withCredentials: true,})
-        .then(res => {
-            setTask(res.data.data.task)
-            setLoading(false);
-            console.log("response = ", res.data);
-        })  
-        .catch(err => {
-            setLoading(false);
-            console.log("error = ",err);
-            toast.error('Something went wrong while fetching task !!!', {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: false,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-                transition: Zoom,
-            });
-        })
+      await axios.get(`${import.meta.env.VITE_BASE_URL}/tasks/getMyTasks/${id}`, {withCredentials: true,})
+      .then(res => {
+        setTask(res.data.data.task)
+        setLoading(false);
+      })  
+      .catch(err => {
+        setLoading(false);
+        toast.error('Something went wrong while fetching task !!!', {
+            position: "top-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+            transition: Zoom,
+        });
+      })
     }
 
     useEffect(() => {

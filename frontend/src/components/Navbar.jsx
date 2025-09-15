@@ -9,12 +9,10 @@ const Navbar = () => {
   const logoutUser = async() => {
     await axios.get(`${import.meta.env.VITE_BASE_URL}/users/logout`, {withCredentials: true,})
       .then(res => {
-        console.log("response = ", res);
         localStorage.setItem("fullName", "")
         navigate("/login")
       })  
       .catch(err => {
-        console.log("error = ",err);
         toast.error('Something went wrong while logging out !!!', {
           position: "top-right",
           autoClose: 5000,

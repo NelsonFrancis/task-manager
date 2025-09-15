@@ -33,12 +33,10 @@ const Login = () => {
     .then(res => {
       setLoading(false);
       localStorage.setItem("fullName", res.data.data.user.fullName);
-      console.log("response = ", res);
       navigate("/task-list");
     })
     .catch(err => {
       setLoading(false);
-      console.log("error = ",err);
       toast.error('Something went wrong !!!', {
         position: "top-right",
         autoClose: 5000,
@@ -56,7 +54,7 @@ const Login = () => {
   return (
     <div className="container">
       <div className="white_bg">
-        <h1>Login User</h1>
+        <h1>Login</h1>
         { loading ? 
           <p>Loading...</p> : 
           <form onSubmit={loginUser}>

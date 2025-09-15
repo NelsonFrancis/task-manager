@@ -6,20 +6,23 @@ import TaskList from './pages/TaskList';
 import AddTask from './pages/AddTask';
 import Navbar from './components/Navbar';
 import EditTask from './pages/EditTask';
-import { useState } from 'react';
+import ProtectedRoutes from './utils/ProtectedRoutes';
+import UnProtectedRoutes from './utils/UnProtectedRoutes';
 
 function App() {
-  const [user, setUser] = useState("");
-
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/task-list" element={<TaskList />} />
-        <Route path="/add-task" element={<AddTask />} />
-        <Route path="/edit-task/:id" element={<EditTask />} /> 
+        <Route element={<UnProtectedRoutes />}>
+          <Route path="/" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/task-list" element={<TaskList />} />
+          <Route path="/add-task" element={<AddTask />} />
+          <Route path="/edit-task/:id" element={<EditTask />} /> 
+        </Route>
       </Routes>
     </>
   )

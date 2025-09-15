@@ -17,11 +17,9 @@ const TaskList = () => {
       .then(res => {
         setTask(res.data.data)
         setLoading(false);
-        console.log("response = ", res.data);
       })  
       .catch(err => {
         setLoading(false);
-        console.log("error = ",err);
         toast.error('Something went wrong while fetching tasks !!!', {
           position: "top-right",
           autoClose: 5000,
@@ -50,7 +48,6 @@ const TaskList = () => {
     await axios.patch(`${import.meta.env.VITE_BASE_URL}/tasks/updateStatus`, {taskId: markCompleteId}, {withCredentials: true,})
       .then(res => {
         setLoading(false);
-        console.log("response = ", res.data);
         toast.success('Marked task as complete !!!', {
           position: "top-right",
           autoClose: 5000,
@@ -66,7 +63,6 @@ const TaskList = () => {
       })  
       .catch(err => {
         setLoading(false);
-        console.log("error = ",err);
         toast.error('Something went wrong while marking tasks complete !!!', {
           position: "top-right",
           autoClose: 5000,
@@ -94,7 +90,6 @@ const TaskList = () => {
     })
       .then(res => {
         setLoading(false);
-        console.log("response = ", res.data);
         toast.success('Task deleted successfully !!!', {
           position: "top-right",
           autoClose: 5000,
@@ -111,7 +106,6 @@ const TaskList = () => {
       })  
       .catch(err => {
         setLoading(false);
-        console.log("error = ",err);
         toast.error('Something went wrong while deleting this tasks !!!', {
           position: "top-right",
           autoClose: 5000,
@@ -177,7 +171,9 @@ const TaskList = () => {
             </tbody>
           </table>
         </div>
+
         <ToastContainer />
+
         <div className="modal fade" id="markCompleteModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -207,6 +203,7 @@ const TaskList = () => {
             </div>
           </div>
         </div>
+
         <div className="modal fade" id="deleteTaskModal" tabIndex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div className="modal-dialog" role="document">
             <div className="modal-content">
@@ -236,6 +233,7 @@ const TaskList = () => {
             </div>
           </div>
         </div>
+        
       </div>
     </div>
   )
