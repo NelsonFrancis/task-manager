@@ -4,6 +4,7 @@ import { ToastContainer, toast, Zoom } from 'react-toastify';
 import { useNavigate } from "react-router-dom";
 
 const TaskList = () => {
+  axios.defaults.withCredentials = true; // set globally
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [task, setTask] = useState([]);
@@ -233,7 +234,7 @@ const TaskList = () => {
             </div>
           </div>
         </div>
-        
+
       </div>
     </div>
   )
