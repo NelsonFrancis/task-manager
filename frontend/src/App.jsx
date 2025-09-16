@@ -8,6 +8,7 @@ import Navbar from './components/Navbar';
 import EditTask from './pages/EditTask';
 import ProtectedRoutes from './utils/ProtectedRoutes';
 import UnProtectedRoutes from './utils/UnProtectedRoutes';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/add-task" element={<AddTask />} />
           <Route path="/edit-task/:id" element={<EditTask />} /> 
         </Route>
+        {/* Catch-all route for 404 */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )
